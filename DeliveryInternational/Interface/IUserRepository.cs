@@ -5,12 +5,14 @@ namespace DeliveryInternational.Interface
 {
     public interface IUserRepository
     {
-        User GetUserProfile(string userEmail);
         bool CreateUser(User user);
         bool UserLogin(UserLoginDto loginDto);
-        bool UserLogout();
+        User GetUserProfile(string userEmail);
+        void UpdateUser(User user);
         bool UserExist(string email);
         bool IsEmailValid(string email);
+        bool IsPasswordValid(string password);
+        bool IsValidPhoneNumber(string phoneNumber);
         bool Save();
         (byte[] PasswordHash, byte[] PasswordSalt) GetPasswordHashAndSalt(string email);
     }

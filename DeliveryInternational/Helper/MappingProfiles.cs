@@ -10,7 +10,8 @@ namespace DeliveryInternational.Helper
         {
             CreateMap<Order, GetOrdersDto>();
             CreateMap<Order, GetOrderDto>();
-            CreateMap<Dish, GetDishesDto>();
+            CreateMap<Dish, DishDto>();
+            CreateMap<Dish, DishInOrderDto>();
             CreateMap<UserRegisterDto, User>();
             CreateMap<User, UserProfileDto>();
         }

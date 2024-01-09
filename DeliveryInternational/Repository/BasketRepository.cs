@@ -57,5 +57,61 @@ namespace DeliveryInternational.Repository
             // Return true if changes were saved, indicating the basket was added or updated
             return changesSaved;
         }
+
+        public List<Basket> GetBasketList(Guid userId)
+        {
+            return _context.Baskets.Where(b => b.UserId == userId).ToList();
+        }
+
+        public string GetDishNameById(Guid dishId)
+        {
+            var dish = _context.Dishes.FirstOrDefault(d => d.DishId == dishId);
+            return dish.Name;
+        }
+
+        public int GetDishPriceById(Guid dishId)
+        {
+            var dish = _context.Dishes.FirstOrDefault(d => d.DishId == dishId);
+            return dish.Price;
+        }
+
+        public string GetDishImageById(Guid dishId)
+        {
+            var dish = _context.Dishes.FirstOrDefault(d => d.DishId == dishId);
+            return dish.Image;
+        }
+
+        public bool DecreaseDishOnBasket(string dishId, string userId)
+        {
+            Guid dishGuid = Guid.Parse(dishId);
+            Guid userGuid = Guid.Parse(userId);
+            var existingBasket = _context.Baskets
+                .FirstOrDefault(b => b.DishId == dishGuid && b.UserId == userGuid);
+
+            if (existingBasket != null)
+                existingBasket.Count -= 1;
+
+            var changesSaved = _context.SaveChanges() > 0;
+            return changesSaved;
+        }
+
+        public bool DeleteDishFromBasket(string dishId, string userId)
+        {
+            Guid dishGuid = Guid.Parse(dishId);
+            Guid userGuid = Guid.Parse(userId);
+            // Find the basket entry to delete
+            var basketEntry = _context.Baskets.FirstOrDefault(b => b.DishId == dishGuid && b.UserId == userGuid);
+
+            if (basketEntry != null)
+            {
+                // Remove the entry from the context
+                _context.Baskets.Remove(basketEntry);
+
+                // Save changes to the database
+                return _context.SaveChanges() > 0;
+            }
+
+            return false; // Entry not found
+        }
     }
 }

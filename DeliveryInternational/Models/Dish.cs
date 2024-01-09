@@ -8,7 +8,7 @@
         public int Price { get; set; }
         public bool isVegetarian { get; set; }
         public string Image { get; set; }
-        public Category Category { get; set; }
+        public string Category { get; set; }
         public ICollection<Rating> UserRating { get; set; }
     }
 }

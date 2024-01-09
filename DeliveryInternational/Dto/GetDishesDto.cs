@@ -1,4 +1,6 @@
-﻿namespace DeliveryInternational.Dto
+﻿using DeliveryInternational.Models;
+
+namespace DeliveryInternational.Dto
 {
     public class GetDishesDto
     {

@@ -4,6 +4,7 @@ using DeliveryInternational.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DeliveryInternational.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20240109043219_UpdateTableScheme")]
+    partial class UpdateTableScheme
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -48,9 +50,8 @@ namespace DeliveryInternational.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("Category")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("Category")
+                        .HasColumnType("int");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -64,6 +65,9 @@ namespace DeliveryInternational.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<Guid?>("OrderId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<int>("Price")
                         .HasColumnType("int");
 
@@ -72,43 +76,9 @@ namespace DeliveryInternational.Migrations
 
                     b.HasKey("DishId");
 
-                    b.ToTable("Dishes");
-                });
-
-            modelBuilder.Entity("DeliveryInternational.Models.DishInOrder", b =>
-                {
-                    b.Property<Guid>("DishinId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<int>("Amount")
-                        .HasColumnType("int");
-
-                    b.Property<Guid>("DishId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("DishImage")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("DishName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("DishPrice")
-                        .HasColumnType("int");
-
-                    b.Property<Guid?>("OrderId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<int>("TotalPrice")
-                        .HasColumnType("int");
-
-                    b.HasKey("DishinId");
-
                     b.HasIndex("OrderId");
 
-                    b.ToTable("Dishins");
+                    b.ToTable("Dishes");
                 });
 
             modelBuilder.Entity("DeliveryInternational.Models.Order", b =>
@@ -130,12 +100,8 @@ namespace DeliveryInternational.Migrations
                     b.Property<int>("Price")
                         .HasColumnType("int");
 
-                    b.Property<string>("Status")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
 
                     b.HasKey("OrderId");
 
@@ -154,7 +120,7 @@ namespace DeliveryInternational.Migrations
                     b.Property<Guid>("UserId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<int>("Value")
+                    b.Property<int?>("Value")
                         .HasColumnType("int");
 
                     b.HasKey("RatingId");
@@ -206,7 +172,7 @@ namespace DeliveryInternational.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("DeliveryInternational.Models.DishInOrder", b =>
+            modelBuilder.Entity("DeliveryInternational.Models.Dish", b =>
                 {
                     b.HasOne("DeliveryInternational.Models.Order", null)
                         .WithMany("Dishes")

@@ -14,6 +14,7 @@ namespace DeliveryInternational.Data
         public DbSet<User> Users { get; set; }
         public DbSet<Basket> Baskets { get; set; }
         public DbSet<Rating> Ratings { get; set; }
+        public DbSet<DishInOrder> Dishins { get; set; }
 
     }
 }

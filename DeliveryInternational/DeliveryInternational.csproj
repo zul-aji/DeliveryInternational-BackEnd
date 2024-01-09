@@ -7,7 +7,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Dto\GetOrderDto.cs~RFa8afb7.TMP" />
     <None Remove="Repository\BasketRepository.cs~RF2764cef.TMP" />
+    <None Remove="Seed.cs~RFb0a475.TMP" />
   </ItemGroup>
 
   <ItemGroup>

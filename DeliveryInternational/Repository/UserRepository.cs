@@ -2,9 +2,6 @@
 using DeliveryInternational.Dto;
 using DeliveryInternational.Interface;
 using DeliveryInternational.Models;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-using System.Security.Cryptography;
 using System.Text.RegularExpressions;
 
 namespace DeliveryInternational.Repository

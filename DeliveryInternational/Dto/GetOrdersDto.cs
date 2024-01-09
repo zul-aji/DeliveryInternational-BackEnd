@@ -7,7 +7,7 @@ namespace DeliveryInternational.Dto
         public Guid OrderId { get; set; }
         public DateTime DeliveryTime { get; set; }
         public DateTime OrderTime { get; set; }
-        public Status Status { get; set; }
+        public string Status { get; set; }
         public int Price { get; set; }
     }
 }

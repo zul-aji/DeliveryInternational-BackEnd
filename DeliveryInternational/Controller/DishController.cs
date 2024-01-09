@@ -46,7 +46,7 @@ namespace DeliveryInternational.Controller
                 // Calculate average rating for the dish
                 if (dish.UserRating != null && dish.UserRating.Any())
                 {
-                    dishDto.Rating = (int)dish.UserRating.Average(r => r.Value ?? 0);
+                    dishDto.Rating = (int)dish.UserRating.Average(r => r.Value);
                 }
 
                 dishDtos.Add(dishDto);
@@ -84,7 +84,7 @@ namespace DeliveryInternational.Controller
                 // Calculate average rating for the dish
                 if (dish.UserRating != null && dish.UserRating.Any())
                 {
-                    dishDto.Rating = (int)dish.UserRating.Average(r => r.Value ?? 0);
+                    dishDto.Rating = (int)dish.UserRating.Average(r => r.Value);
                 }
 
                 return Ok(dishDto);

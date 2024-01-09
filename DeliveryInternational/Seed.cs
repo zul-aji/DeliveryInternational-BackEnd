@@ -1,4 +1,5 @@
 ﻿using DeliveryInternational.Data;
+using DeliveryInternational.Dto;
 using DeliveryInternational.Models;
 using System;
 using System.Collections.Generic;
@@ -30,7 +31,7 @@ namespace DeliveryInternational
                         Price = 10,
                         isVegetarian = false,
                         Image = "wok_chicken.jpg",
-                        Category = Category.Wok,
+                        Category = "Wok",
                         UserRating = new List<Rating>
                         {
                             new Rating { RatingId = Guid.NewGuid(), Value = 4, UserId = Guid.NewGuid() },
@@ -45,7 +46,7 @@ namespace DeliveryInternational
                         Price = 10,
                         isVegetarian = false,
                         Image = "wok_beef.jpg",
-                        Category = Category.Wok,
+                        Category = "Wok",
                         UserRating = new List<Rating>
                         {
                             new Rating { RatingId = Guid.NewGuid(), Value = 4, UserId = Guid.NewGuid() },
@@ -60,7 +61,7 @@ namespace DeliveryInternational
                         Price = 10,
                         isVegetarian = false,
                         Image = "Choco_lava.jpg",
-                        Category = Category.Dessert,
+                        Category = "Dessert",
                         UserRating = new List<Rating>
                         {
                             new Rating { RatingId = Guid.NewGuid(), Value = 4, UserId = Guid.NewGuid() },
@@ -98,11 +99,20 @@ namespace DeliveryInternational
                         OrderId = Guid.NewGuid(),
                         DeliveryTime = DateTime.UtcNow.AddDays(2),
                         OrderTime = DateTime.UtcNow,
-                        Status = Status.InProcess,
+                        Status = "InProcess",
                         Price = 20,
-                        Dishes = new List<Dish>
+                        Dishes = new List<DishInOrder>
                         {
-                            dishes.First(), // Associate with a dish from the list
+                            new DishInOrder
+                            {
+                                DishinId = Guid.NewGuid(),
+                                DishId = dishes.First().DishId,
+                                DishName = dishes.First().Name,
+                                DishPrice = dishes.First().Price,
+                                TotalPrice = 0,
+                                Amount = 0,
+                                DishImage = dishes.First().Image,
+                            },
                         },
                         Address = "456 Oak Street"
                     },

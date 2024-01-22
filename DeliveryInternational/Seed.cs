@@ -31,12 +31,8 @@ namespace DeliveryInternational
                         Price = 10,
                         isVegetarian = false,
                         Image = "wok_chicken.jpg",
+                        Rating = 0,
                         Category = "Wok",
-                        UserRating = new List<Rating>
-                        {
-                            new Rating { RatingId = Guid.NewGuid(), Value = 4, UserId = Guid.NewGuid() },
-                            new Rating { RatingId = Guid.NewGuid(), Value = 5, UserId = Guid.NewGuid() }
-                        }
                     },
                     new Dish
                     {
@@ -46,12 +42,8 @@ namespace DeliveryInternational
                         Price = 10,
                         isVegetarian = false,
                         Image = "wok_beef.jpg",
+                        Rating = 0,
                         Category = "Wok",
-                        UserRating = new List<Rating>
-                        {
-                            new Rating { RatingId = Guid.NewGuid(), Value = 4, UserId = Guid.NewGuid() },
-                            new Rating { RatingId = Guid.NewGuid(), Value = 5, UserId = Guid.NewGuid() }
-                        }
                     },
                     new Dish
                     {
@@ -61,12 +53,8 @@ namespace DeliveryInternational
                         Price = 10,
                         isVegetarian = false,
                         Image = "Choco_lava.jpg",
+                        Rating = 0,
                         Category = "Dessert",
-                        UserRating = new List<Rating>
-                        {
-                            new Rating { RatingId = Guid.NewGuid(), Value = 4, UserId = Guid.NewGuid() },
-                            new Rating { RatingId = Guid.NewGuid(), Value = 5, UserId = Guid.NewGuid() }
-                        }
                     },
 
                 };

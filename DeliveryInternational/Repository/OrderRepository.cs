@@ -75,5 +75,11 @@ namespace DeliveryInternational.Repository
         {
             return _context.Orders.FirstOrDefault(o => o.OrderId == orderId);
         }
+
+        public bool Save()
+        {
+            var saved = _context.SaveChanges();
+            return saved > 0;
+        }
     }
 }

@@ -4,6 +4,7 @@ using DeliveryInternational.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DeliveryInternational.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20240122093911_Add-Timestamp-To-Rating")]
+    partial class AddTimestampToRating
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -67,8 +69,11 @@ namespace DeliveryInternational.Migrations
                     b.Property<int>("Price")
                         .HasColumnType("int");
 
-                    b.Property<int>("Rating")
-                        .HasColumnType("int");
+                    b.Property<byte[]>("Timestamp")
+                        .IsConcurrencyToken()
+                        .IsRequired()
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("rowversion");
 
                     b.Property<bool>("isVegetarian")
                         .HasColumnType("bit");
@@ -151,8 +156,12 @@ namespace DeliveryInternational.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("DishId")
+                    b.Property<Guid?>("DishId")
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<byte[]>("Timestamp")
+                        .IsRequired()
+                        .HasColumnType("varbinary(max)");
 
                     b.Property<Guid>("UserId")
                         .HasColumnType("uniqueidentifier");
@@ -161,6 +170,8 @@ namespace DeliveryInternational.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("RatingId");
+
+                    b.HasIndex("DishId");
 
                     b.ToTable("Ratings");
                 });
@@ -212,6 +223,18 @@ namespace DeliveryInternational.Migrations
                     b.HasOne("DeliveryInternational.Models.Order", null)
                         .WithMany("Dishes")
                         .HasForeignKey("OrderId");
+                });
+
+            modelBuilder.Entity("DeliveryInternational.Models.Rating", b =>
+                {
+                    b.HasOne("DeliveryInternational.Models.Dish", null)
+                        .WithMany("UserRating")
+                        .HasForeignKey("DishId");
+                });
+
+            modelBuilder.Entity("DeliveryInternational.Models.Dish", b =>
+                {
+                    b.Navigation("UserRating");
                 });
 
             modelBuilder.Entity("DeliveryInternational.Models.Order", b =>

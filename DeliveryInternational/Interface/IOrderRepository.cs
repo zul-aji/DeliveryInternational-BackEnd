@@ -11,5 +11,6 @@ namespace DeliveryInternational.Interface
         string GetAddress(Guid orderGuid);
         Order GetOrder(Guid orderId);
         bool OrderExist(Guid id);
+        bool Save();
     }
 }

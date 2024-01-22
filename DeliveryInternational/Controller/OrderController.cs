@@ -158,5 +158,46 @@ namespace DeliveryInternational.Controller
                 return StatusCode(500, errorResponse);
             }
         }
+
+        [HttpPost("{orderId}/status")]
+        [SwaggerResponse(200, "Success")]
+        [SwaggerResponse(400, "Bad Request")]
+        [SwaggerResponse(401, "Unauthorized")]
+        [SwaggerResponse(403, "Forbidden")]
+        [SwaggerResponse(404, "Not Found")]
+        [SwaggerResponse(500, "InternalServerError", Type = typeof(ErrorResponse))]
+        public IActionResult ChangeOrderStatus(string orderId)
+        { 
+        try
+            {
+                var orderGuid = Guid.Parse(orderId);
+                var order = _orderInterface.GetOrder(orderGuid);
+
+                if (order == null)
+                    return NotFound();
+
+                if (order.Status == "InProcess")
+                {
+                    order.Status = "Delivered";
+                    _orderInterface.Save();
+
+                    return Ok("Order status updated to 'Delivered'");
+                }
+                else
+                {
+                    return BadRequest("Order status cannot be updated. Invalid current status.");
+                }
+            }
+            catch (Exception ex)
+            {
+                var errorResponse = new ErrorResponse
+                {
+                    Status = "500",
+                    Message = ex.Message
+                };
+
+                return StatusCode(500, errorResponse);
+    }
+}
     }
 }

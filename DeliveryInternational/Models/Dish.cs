@@ -1,4 +1,6 @@
-﻿namespace DeliveryInternational.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace DeliveryInternational.Models
 {
     public class Dish
     {
@@ -9,6 +11,7 @@
         public bool isVegetarian { get; set; }
         public string Image { get; set; }
         public string Category { get; set; }
-        public ICollection<Rating> UserRating { get; set; }
+        public int Rating { get; set; }
+
     }
 }

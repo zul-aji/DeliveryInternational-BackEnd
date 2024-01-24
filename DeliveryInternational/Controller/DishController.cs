@@ -10,7 +10,7 @@ using System.Security.Claims;
 
 namespace DeliveryInternational.Controller
 {
-    [Route("api/[controller]"), ApiController]
+    [Route("api/dish"), ApiController]
     public class DishController : ControllerBase
     {
         private const int PageSize = 10;

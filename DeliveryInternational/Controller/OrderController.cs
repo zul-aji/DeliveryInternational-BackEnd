@@ -10,7 +10,7 @@ using System.Security.Claims;
 
 namespace DeliveryInternational.Controller
 {
-    [Route("api/[controller]"), Authorize, ApiController]
+    [Route("api/order"), Authorize, ApiController]
     public class OrderController : ControllerBase
     {
         private readonly IOrderRepository _orderInterface;

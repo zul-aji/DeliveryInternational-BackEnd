@@ -11,7 +11,7 @@ using System.Security.Claims;
 
 namespace DeliveryInternational.Controller
 {
-    [Route("api/[controller]"), ApiController, Authorize]
+    [Route("api/basket"), ApiController, Authorize]
     public class BasketController : ControllerBase
     {
         private readonly IBasketRepository _basketInterface;

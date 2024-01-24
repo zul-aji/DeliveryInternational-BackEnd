@@ -12,7 +12,7 @@ using System.Security.Cryptography;
 
 namespace DeliveryInternational.Controller
 {
-    [Route("api/[controller]"), ApiController]
+    [Route("api/account"), ApiController]
     public class UserController : ControllerBase
     {
         private readonly IConfiguration _configuration;

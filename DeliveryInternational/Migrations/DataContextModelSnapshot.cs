@@ -39,7 +39,7 @@ namespace DeliveryInternational.Migrations
 
                     b.HasKey("BasketId");
 
-                    b.ToTable("Baskets");
+                    b.ToTable("Baskets", (string)null);
                 });
 
             modelBuilder.Entity("DeliveryInternational.Models.Dish", b =>
@@ -75,7 +75,7 @@ namespace DeliveryInternational.Migrations
 
                     b.HasKey("DishId");
 
-                    b.ToTable("Dishes");
+                    b.ToTable("Dishes", (string)null);
                 });
 
             modelBuilder.Entity("DeliveryInternational.Models.DishInOrder", b =>
@@ -111,7 +111,7 @@ namespace DeliveryInternational.Migrations
 
                     b.HasIndex("OrderId");
 
-                    b.ToTable("Dishins");
+                    b.ToTable("Dishins", (string)null);
                 });
 
             modelBuilder.Entity("DeliveryInternational.Models.Order", b =>
@@ -142,7 +142,7 @@ namespace DeliveryInternational.Migrations
 
                     b.HasKey("OrderId");
 
-                    b.ToTable("Orders");
+                    b.ToTable("Orders", (string)null);
                 });
 
             modelBuilder.Entity("DeliveryInternational.Models.Rating", b =>
@@ -162,7 +162,7 @@ namespace DeliveryInternational.Migrations
 
                     b.HasKey("RatingId");
 
-                    b.ToTable("Ratings");
+                    b.ToTable("Ratings", (string)null);
                 });
 
             modelBuilder.Entity("DeliveryInternational.Models.User", b =>
@@ -204,7 +204,7 @@ namespace DeliveryInternational.Migrations
 
                     b.HasKey("UserId");
 
-                    b.ToTable("Users");
+                    b.ToTable("Users", (string)null);
                 });
 
             modelBuilder.Entity("DeliveryInternational.Models.DishInOrder", b =>
